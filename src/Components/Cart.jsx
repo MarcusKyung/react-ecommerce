@@ -1,5 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { XIcon } from "@heroicons/react/outline";
+import { XIcon, ShoppingCartIcon } from "@heroicons/react/outline";
 import React, { Fragment, useEffect, useState } from "react";
 
 export default function Cart({ open, setOpen, cart, updateCart }) {
@@ -62,9 +62,16 @@ export default function Cart({ open, setOpen, cart, updateCart }) {
                         </button>
                       </div>
                     </div>
-
+                    
                     <div className="mt-8">
-                      <div className="flow-root">
+                    {(cart.length === 0) ? (
+
+                        <div className="flex flex-col items-center justify-center h-96">
+                          <ShoppingCartIcon className="w-12" />
+                          <p className="pt-2">Your Cart is Empty.</p>
+                        </div>
+                        
+                      ) : (<div className="flow-root">
                         <ul role="list" className="-my-6 divide-y divide-gray-200">
                           {cart.map((product) => (
                             <li key={product.id} className="flex py-6">
@@ -110,6 +117,7 @@ export default function Cart({ open, setOpen, cart, updateCart }) {
                           ))}
                         </ul>
                       </div>
+                        )}
                     </div>
                   </div>
 
