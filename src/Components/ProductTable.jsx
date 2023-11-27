@@ -41,7 +41,7 @@ export default function ProductTable({ cart, updateCart }) {
       setProducts(body);
     };
     fetchProducts();
-  });
+  }, [sortOptions, filterOptions]);
 
   return (
     <div className="bg-white">
