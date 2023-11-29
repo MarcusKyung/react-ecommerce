@@ -5,7 +5,11 @@ import ProductTable from "../Components/ProductTable";
 
 function Home() {
   const [open, setOpen] = useState(false);
-  const [cart, updateCart] = useState([]);
+  const [cart, updateCart] = useState(localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : (localStorage.setItem("cart", JSON.stringify([]))));
+
+  React.useEffect(()=> {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   return (
     <main>
