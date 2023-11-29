@@ -38,6 +38,13 @@ export default function ProductTable({ cart, updateCart }) {
       console.info("Fetching Products...");
       let res = await fetch("http://localhost:3001/products");
       let body = await res.json();
+      
+      if (sortOptions[0].current === true) {
+        body.sort((a, b) => a.price - b.price);
+      } 
+      if (sortOptions[1].current === true) {
+        body.sort((a, b) => a.releaseDate - b.releaseDate);
+      }
       setProducts(body);
     };
     fetchProducts();
